@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        header {
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+
+        main {
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .board {
+            display: grid;
+            grid-template-columns: 150px 150px 150px;
+            grid-template-rows: 150px 150px 150px;
+        }
+
+        .tile {
+            border: 1px solid black;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 35px;
+            font-weight: bold;
+        }
+    </style>
+    <title>tic tac toe</title>
+</head>
+
+<body>
+    <header>
+        <h1>PLAYER 1 TURN</h1>
+    </header>
+    <main>
+        <div class="board">
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+            <div class="tile"></div>
+        </div>
+    </main>
+    <script>
+        let i = 0;
+        let xTurn = true;
+        let clickedAmount = 0;
+        let turn = document.querySelector("h1");
+        let amount = document.querySelectorAll(".tile").length;
+        while (i < amount) {
+            let tile = document.querySelectorAll(".tile")[i];
+            tile.addEventListener("click", main)
+            i++;
+        }
+
+        function main() {
+            
+            if (xTurn == true) {
+                this.innerHTML = "X";
+                this.removeEventListener("click", main)
+                turn.innerHTML = "PLAYER 2 TURN"
+                xTurn = false;
+            } else {
+                this.innerHTML = "O";
+                this.removeEventListener("click", main)
+                turn.innerHTML = "PLAYER 1 TURN"
+                xTurn = true;
+            }
+            checkWin();
+        }
+
+        function checkWin() {
+            clickedAmount++;
+            //horizontal top to bottom
+            if (document.querySelectorAll(".tile")[0].innerHTML == "X" && document.querySelectorAll(".tile")[1].innerHTML == "X" && document.querySelectorAll(".tile")[2].innerHTML == "X") {
+                turn.innerHTML = "PLAYER 1 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (document.querySelectorAll(".tile")[3].innerHTML == "X" && document.querySelectorAll(".tile")[4].innerHTML == "X" && document.querySelectorAll(".tile")[5].innerHTML == "X") {
+                turn.innerHTML = "PLAYER 1 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (document.querySelectorAll(".tile")[6].innerHTML == "X" && document.querySelectorAll(".tile")[7].innerHTML == "X" && document.querySelectorAll(".tile")[8].innerHTML == "X") {
+                turn.innerHTML = "PLAYER 1 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            }
+            //vertival left to right
+            else if (document.querySelectorAll(".tile")[0].innerHTML == "X" && document.querySelectorAll(".tile")[3].innerHTML == "X" && document.querySelectorAll(".tile")[6].innerHTML == "X") {
+                turn.innerHTML = "PLAYER 1 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (document.querySelectorAll(".tile")[1].innerHTML == "X" && document.querySelectorAll(".tile")[4].innerHTML == "X" && document.querySelectorAll(".tile")[7].innerHTML == "X") {
+                turn.innerHTML = "PLAYER 1 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (document.querySelectorAll(".tile")[2].innerHTML == "X" && document.querySelectorAll(".tile")[5].innerHTML == "X" && document.querySelectorAll(".tile")[8].innerHTML == "X") {
+                turn.innerHTML = "PLAYER 1 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            }
+            //diagnol
+            else if (document.querySelectorAll(".tile")[0].innerHTML == "X" && document.querySelectorAll(".tile")[4].innerHTML == "X" && document.querySelectorAll(".tile")[8].innerHTML == "X") {
+                turn.innerHTML = "PLAYER 1 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (document.querySelectorAll(".tile")[2].innerHTML == "X" && document.querySelectorAll(".tile")[4].innerHTML == "X" && document.querySelectorAll(".tile")[6].innerHTML == "X") {
+                turn.innerHTML = "PLAYER 1 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            }
+
+
+
+            if (document.querySelectorAll(".tile")[0].innerHTML == "O" && document.querySelectorAll(".tile")[1].innerHTML == "O" && document.querySelectorAll(".tile")[2].innerHTML == "O") {
+                turn.innerHTML = "PLAYER 2 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (document.querySelectorAll(".tile")[3].innerHTML == "O" && document.querySelectorAll(".tile")[4].innerHTML == "O" && document.querySelectorAll(".tile")[5].innerHTML == "O") {
+                turn.innerHTML = "PLAYER 2 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (document.querySelectorAll(".tile")[6].innerHTML == "O" && document.querySelectorAll(".tile")[7].innerHTML == "O" && document.querySelectorAll(".tile")[8].innerHTML == "O") {
+                turn.innerHTML = "PLAYER 1 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            }
+            //vertival left to right
+            else if (document.querySelectorAll(".tile")[0].innerHTML == "O" && document.querySelectorAll(".tile")[3].innerHTML == "O" && document.querySelectorAll(".tile")[6].innerHTML == "O") {
+                turn.innerHTML = "PLAYER 2 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (document.querySelectorAll(".tile")[1].innerHTML == "O" && document.querySelectorAll(".tile")[4].innerHTML == "O" && document.querySelectorAll(".tile")[7].innerHTML == "O") {
+                turn.innerHTML = "PLAYER 2 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (document.querySelectorAll(".tile")[2].innerHTML == "O" && document.querySelectorAll(".tile")[5].innerHTML == "O" && document.querySelectorAll(".tile")[8].innerHTML == "O") {
+                turn.innerHTML = "PLAYER 2 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            }
+            //diagnol
+            else if (document.querySelectorAll(".tile")[0].innerHTML == "O" && document.querySelectorAll(".tile")[4].innerHTML == "O" && document.querySelectorAll(".tile")[8].innerHTML == "O") {
+                turn.innerHTML = "PLAYER 2 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (document.querySelectorAll(".tile")[2].innerHTML == "O" && document.querySelectorAll(".tile")[4].innerHTML == "O" && document.querySelectorAll(".tile")[6].innerHTML == "O") {
+                turn.innerHTML = "PLAYER 2 WINS";
+                document.querySelectorAll(".tile").forEach(tile => tile.removeEventListener("click", main))
+            } else if (clickedAmount == 9) {
+                turn.innerHTML = "DRAW"
+            }
+        }
+    </script>
+</body>
+
+</html>
